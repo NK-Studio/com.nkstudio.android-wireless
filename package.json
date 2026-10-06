@@ -1,0 +1,18 @@
+{
+  "name": "com.nkstudio.android-wireless",
+  "displayName": "Android Wireless Pairing",
+  "version": "0.1.0",
+  "unity": "6000.0",
+  "description": "Unity Editor window for Android 11+ wireless debugging. Pair a device via QR code or 6-digit pairing code, then adb connect — all without leaving the editor.",
+  "keywords": [
+    "editor",
+    "android",
+    "adb",
+    "wireless",
+    "debugging"
+  ],
+  "author": {
+    "name": "NKStudio"
+  },
+  "hideInEditor": false
+}

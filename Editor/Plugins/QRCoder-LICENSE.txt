@@ -1,0 +1,4 @@
+QRCoder 1.8.0 (lib/netstandard2.0) — https://github.com/codebude/QRCoder
+Source: https://www.nuget.org/packages/QRCoder/1.8.0
+License: MIT — https://licenses.nuget.org/MIT
+Editor-only dependency used by the Android Wireless Pairing window.

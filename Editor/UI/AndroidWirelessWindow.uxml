@@ -1,0 +1,81 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <Style src="AndroidWirelessWindow.uss" />
+    <ui:ScrollView class="aw-root">
+
+        <!-- ADB 환경 -->
+        <ui:VisualElement class="aw-section">
+            <ui:VisualElement class="aw-row aw-row--between">
+                <ui:Label text="ADB" class="aw-section-title" />
+                <ui:Button name="adb-refresh" text="다시 확인" class="aw-button-small" />
+            </ui:VisualElement>
+            <ui:Label name="adb-status" text="확인 중…" class="aw-mono aw-muted" />
+            <ui:VisualElement class="aw-row">
+                <ui:TextField name="adb-override" label="adb 경로" class="aw-grow" />
+                <ui:Button name="adb-browse" text="찾아보기" />
+                <ui:Button name="adb-reset" text="기본값" />
+            </ui:VisualElement>
+            <ui:Label text="비워두면 Unity Android SDK의 adb를 사용합니다. (권장 — 다른 adb는 서버 충돌을 일으킬 수 있음)" class="aw-hint" />
+        </ui:VisualElement>
+
+        <!-- 탭 -->
+        <ui:VisualElement class="aw-tabs">
+            <ui:Button name="tab-qr" text="QR 코드" class="aw-tab" />
+            <ui:Button name="tab-code" text="페어링 코드" class="aw-tab" />
+        </ui:VisualElement>
+
+        <!-- QR 페어링 -->
+        <ui:VisualElement name="page-qr" class="aw-section aw-page">
+            <ui:Label text="휴대폰: 설정 › 개발자 옵션 › 무선 디버깅 › QR 코드로 기기 페어링" class="aw-help" />
+            <ui:VisualElement class="aw-qr-frame">
+                <ui:Image name="qr-image" class="aw-qr" />
+                <ui:Label name="qr-placeholder" text="'QR 만들기'를 누르세요" class="aw-qr-placeholder" />
+            </ui:VisualElement>
+            <ui:Button name="qr-start" text="QR 만들기" class="aw-button-primary" />
+        </ui:VisualElement>
+
+        <!-- 페어링 코드 -->
+        <ui:VisualElement name="page-code" class="aw-section aw-page">
+            <ui:Label text="휴대폰: 무선 디버깅 › 페어링 코드로 기기 페어링 화면의 값을 입력하세요." class="aw-help" />
+            <ui:TextField name="code-address" label="IP 주소 및 포트" />
+            <ui:TextField name="code-code" label="Wi-Fi 페어링 코드" max-length="6" />
+            <ui:Button name="code-pair" text="페어링" class="aw-button-primary" />
+        </ui:VisualElement>
+
+        <!-- 상태 -->
+        <ui:VisualElement name="status-bar" class="aw-status aw-status--idle">
+            <ui:VisualElement class="aw-status-dot" />
+            <ui:Label name="status-text" text="대기 중" class="aw-status-text" />
+        </ui:VisualElement>
+
+        <!-- 직접 연결 (자동 연결이 안 될 때) -->
+        <ui:VisualElement class="aw-section">
+            <ui:Label text="직접 연결" class="aw-section-title" />
+            <ui:Label text="이미 페어링된 기기이거나 자동 연결이 실패했을 때, 무선 디버깅 화면 상단의 'IP 주소 및 포트'를 입력하세요." class="aw-hint" />
+            <ui:VisualElement class="aw-row">
+                <ui:TextField name="connect-address" label="IP 주소 및 포트" class="aw-grow" />
+                <ui:Button name="connect-button" text="연결" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <!-- 기기 목록 -->
+        <ui:VisualElement class="aw-section">
+            <ui:VisualElement class="aw-row aw-row--between">
+                <ui:Label text="연결된 기기" class="aw-section-title" />
+                <ui:Button name="devices-refresh" text="새로고침" class="aw-button-small" />
+            </ui:VisualElement>
+            <ui:VisualElement name="device-list" class="aw-device-list" />
+            <ui:Label name="device-empty" text="연결된 기기가 없습니다." class="aw-muted" />
+        </ui:VisualElement>
+
+        <!-- 로그 -->
+        <ui:Foldout name="log-foldout" text="로그" value="false" class="aw-log-foldout">
+            <ui:VisualElement class="aw-row aw-row--end">
+                <ui:Button name="log-clear" text="지우기" class="aw-button-small" />
+            </ui:VisualElement>
+            <ui:ScrollView name="log-scroll" class="aw-log">
+                <ui:Label name="log" class="aw-mono aw-log-text" />
+            </ui:ScrollView>
+        </ui:Foldout>
+
+    </ui:ScrollView>
+</ui:UXML>

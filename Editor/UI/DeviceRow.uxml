@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:VisualElement class="aw-device">
+        <ui:VisualElement name="device-dot" class="aw-device-dot" />
+        <ui:VisualElement class="aw-device-info">
+            <ui:Label name="device-model" class="aw-device-model" />
+            <ui:Label name="device-serial" class="aw-mono aw-muted" />
+        </ui:VisualElement>
+        <ui:Label name="device-badge" class="aw-device-badge" />
+        <ui:Button name="device-disconnect" text="연결 해제" class="aw-button-small" />
+    </ui:VisualElement>
+</ui:UXML>
