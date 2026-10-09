@@ -121,6 +121,12 @@
     color: var(--aw-fg-muted);
 }
 
+.aw-footer__action {
+    flex-shrink: 0;
+    margin-left: auto;
+    margin-right: 8px;
+}
+
 /* ---------- 기기 목록: 안내 ---------- */
 .aw-steps {
     margin-bottom: 4px;

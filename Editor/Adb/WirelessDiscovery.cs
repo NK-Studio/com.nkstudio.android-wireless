@@ -58,6 +58,23 @@ namespace AndroidWireless
             _ = RunDeviceLoopAsync(cts.Token);
         }
 
+        /// <summary>adb 서버를 바꾼 뒤 구독을 처음부터 다시 연다 (구버전 폴백의 재시도 대기를 건너뛴다).</summary>
+        public void Restart()
+        {
+            cts?.Cancel();
+            cts?.Dispose();
+            cts = null;
+            services = new List<MdnsServiceInfo>();
+            adbDevices = new Dictionary<string, string>();
+            HasDetailedInfo = true;
+            IsStarting = true;
+            Error = null;
+            unreachableSince = DateTime.MaxValue;
+            ensureServerTask = null;
+            Rebuild();
+            Start();
+        }
+
         public void Dispose()
         {
             cts?.Cancel();

@@ -221,6 +221,16 @@ namespace AndroidWireless
             await Task.Delay(500, token);
         }
 
+        /// <summary>
+        /// 실행 중인 adb 서버를 내리고 가장 최신 adb로 다시 띄운다. 다른 프로그램이 오래된 adb로 띄운 서버나,
+        /// platform-tools를 설치한 뒤에도 남아 있는 이전 버전 서버를 교체한다. 실패 시 이유를 돌려준다.
+        /// </summary>
+        public static async Task<string> RestartAsync(CancellationToken token)
+        {
+            await KillAsync(token);
+            return await EnsureRunningAsync(token);
+        }
+
         /// <summary>성공 시 연결 서비스 이름(guid)을 돌려준다.</summary>
         public static async Task<(bool ok, string guid, string message)> PairAsync(string address, string code, CancellationToken token)
         {

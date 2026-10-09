@@ -54,6 +54,13 @@ Unity와 다른 도구(Android Studio 등)가 서로 adb 서버를 종료하고 
 - Unity의 `Preferences > External Tools > Kill external ADB instances`가 켜져 있으면, Unity가 자기 SDK가 아닌 adb 서버를 종료합니다. 다른 도구와 같이 쓴다면 이 옵션을 끄세요.
 - Unity SDK와 다른 도구의 Platform-Tools 버전이 다르면 서로 서버를 재시작시킵니다. 창의 업데이트 안내로 Unity SDK를 최신으로 올리거나, `Preferences > External Tools > Android SDK`를 같은 SDK로 맞추세요.
 
+## 문제 해결: 기기 이름·API가 "—"로 나올 때
+
+하단에 "실행 중인 adb 서버가 오래된 버전" 안내가 뜨면, 다른 프로그램(scrcpy, Homebrew adb, 오래된 Android Studio SDK 등)이 오래된 adb로 서버를 먼저 띄운 상태입니다.
+
+- 하단의 **adb 서버 다시 시작**을 누르면 서버를 내리고 설치된 adb 중 최신 버전으로 다시 띄웁니다. 터미널에서 `adb kill-server`를 실행해도 됩니다.
+- 다시 시작해도 반복되면 그 프로그램이 오래된 adb를 다시 띄우는 것입니다. macOS에서는 `lsof -nP -iTCP:5037 -sTCP:LISTEN`으로 PID를 찾고 `ps -p <PID> -o comm=`으로 어떤 adb인지 확인한 뒤, 그 프로그램을 업데이트하거나 같은 SDK를 쓰도록 맞추세요.
+
 ## 문제 해결: Windows
 
 - **목록에 기기가 안 나올 때**: mDNS(UDP 5353) 수신을 Windows 방화벽이 막고 있을 수 있습니다. 처음 adb 서버가 뜰 때 나오는 방화벽 창에서 `adb.exe`를 허용하거나, `Windows 보안 > 방화벽 > 앱 허용`에서 사용하는 SDK의 `platform-tools\adb.exe`를 개인 네트워크에 허용하세요. Wi-Fi 네트워크 프로필이 "공용"이면 "개인"으로 바꾸세요.

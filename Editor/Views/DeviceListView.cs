@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -16,7 +17,9 @@ namespace AndroidWireless
         private readonly VisualElement empty;
         private readonly Spinner emptySpinner;
         private readonly Label emptyTitle, emptyDesc, footerNote;
-        private readonly Button emptyButton;
+        private readonly Button emptyButton, restartButton;
+        private bool restartingAdb, restartedAdb;
+        private string restartError;
 
         public DeviceListView(WindowContext context) : base("DeviceList")
         {
@@ -40,6 +43,8 @@ namespace AndroidWireless
             emptyButton = Root.Q<Button>("empty-adb");
             emptyButton.clicked += () => SettingsService.OpenUserPreferences(AndroidWirelessPreferences.Path);
             footerNote = Root.Q<Label>("footer-note");
+            restartButton = Root.Q<Button>("restart-adb");
+            restartButton.clicked += RestartAdbServer;
 
             Root.Q<Button>("close").clicked += () => context.CloseWindow();
 
@@ -112,6 +117,24 @@ namespace AndroidWireless
                 var installed = AndroidSdk.PlatformToolsVersion;
                 if (result.Success && !AndroidSdk.NeedsPlatformToolsUpdate)
                 {
+                    // 설치해도 이미 떠 있던 이전 버전 서버는 그대로 남는다(macOS는 교체된 파일로 계속 실행됨) → 새 adb로 교체한다.
+                    installing = true;
+                    SetState(() => Localization.Get("list.restartingAdb"), true, false, false);
+                    try
+                    {
+                        await AdbServer.RestartAsync(context.Lifetime);
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        return;
+                    }
+                    finally
+                    {
+                        installing = false;
+                    }
+                    context.Discovery.Restart();
+                    if (banner.panel == null) return;
+
                     SetState(() => Localization.Format("update.done", installed), false, false, false);
                 }
                 else
@@ -195,9 +218,81 @@ namespace AndroidWireless
                 }
             }
 
-            footerNote.text = discovery.HasDetailedInfo
-                ? ""
-                : Localization.Get("list.note.oldAdb");
+            UpdateFooter(discovery);
+        }
+
+        // ---------------------------------------------------------------- 오래된 adb 서버
+
+        /// <summary>
+        /// 상세 정보가 안 오면 실행 중인 서버가 오래된 것이다. 설치된 adb 중 최신이 37 이상이면
+        /// 서버만 바꾸면 되므로 "adb 서버 다시 시작"을 보여 주고, 아니면 Platform-Tools가 필요하다고 안내한다.
+        /// </summary>
+        private void UpdateFooter(WirelessDiscovery discovery)
+        {
+            if (discovery.HasDetailedInfo)
+            {
+                restartError = null;
+                footerNote.text = "";
+                restartButton.style.display = DisplayStyle.None;
+                return;
+            }
+
+            bool canRestart = NewestAdbSupportsDetails();
+            restartButton.style.display = canRestart ? DisplayStyle.Flex : DisplayStyle.None;
+            restartButton.SetEnabled(!restartingAdb);
+            restartButton.text = Localization.Get(restartingAdb ? "list.restartingAdb" : "list.restartAdb");
+
+            if (!canRestart) footerNote.text = Localization.Get("list.note.oldAdb");
+            else if (restartError != null) footerNote.text = restartError;
+            else footerNote.text = Localization.Get(restartedAdb ? "list.note.oldServerAgain" : "list.note.oldServer");
+        }
+
+        /// <summary>서버를 띄울 때 쓸 adb의 Platform-Tools 버전이 상세 정보 스트림을 지원하는지. 알 수 없으면 true.</summary>
+        private static bool NewestAdbSupportsDetails()
+        {
+            string adb = AdbClient.ResolveAdbPath();
+            if (string.IsNullOrEmpty(adb)) return false;
+            string sdkRoot = Path.GetDirectoryName(Path.GetDirectoryName(adb));
+            var version = AndroidSdk.ReadPlatformToolsVersion(sdkRoot);
+            return version == null || version.Major >= AndroidSdk.RequiredPlatformToolsMajor;
+        }
+
+        private async void RestartAdbServer()
+        {
+            if (restartingAdb) return;
+            bool confirmed = await new ConfirmOverlay(context, "restart.confirmTitle", "restart.confirmBody", "restart.confirmOk").ShowAsync();
+            if (!confirmed || Root.panel == null) return;
+
+            restartingAdb = true;
+            restartError = null;
+            Rebuild();
+            try
+            {
+                string error = await AdbServer.RestartAsync(context.Lifetime);
+                restartError = error;
+            }
+            catch (OperationCanceledException)
+            {
+                return; // 창이 닫힘
+            }
+            catch (Exception e)
+            {
+                restartError = Localization.Format("error.startServer", e.Message);
+            }
+            finally
+            {
+                restartingAdb = false;
+            }
+
+            if (restartError != null)
+            {
+                // 실패 이유를 안내 자리에 남긴다. 서버가 계속 없으면 WirelessDiscovery가 알아서 다시 띄운다.
+                Rebuild();
+                return;
+            }
+
+            restartedAdb = true;
+            context.Discovery.Restart();
         }
 
         private static bool MatchesFilter(WirelessDevice device, string filter)

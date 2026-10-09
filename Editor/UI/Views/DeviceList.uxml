@@ -52,6 +52,7 @@
 
         <ui:VisualElement class="aw-footer">
             <ui:Label name="footer-note" class="aw-footer__note" />
+            <ui:Button name="restart-adb" class="aw-btn aw-btn--secondary aw-footer__action" />
             <ui:Button name="close" text="@common.close" class="aw-btn aw-btn--primary" />
         </ui:VisualElement>
 

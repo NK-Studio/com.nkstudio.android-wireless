@@ -48,6 +48,21 @@ namespace AndroidWireless
             ["list.note.oldAdb"] = (
                 "Device name, API and ADB Wi-Fi version need Android SDK Platform-Tools 37 or newer.",
                 "기기 이름·API·ADB Wi-Fi 버전 표시는 Android SDK Platform-Tools 37 이상이 필요합니다."),
+            ["list.note.oldServer"] = (
+                "The running adb server is an older version, so device name, API and ADB Wi-Fi version can't be shown.",
+                "실행 중인 adb 서버가 오래된 버전이라 기기 이름·API·ADB Wi-Fi 버전을 표시할 수 없습니다."),
+            ["list.note.oldServerAgain"] = (
+                "Another program started an older adb server again. Update that program or point it at the same Android SDK.",
+                "다른 프로그램이 오래된 adb 서버를 다시 실행했습니다. 그 프로그램을 업데이트하거나 같은 Android SDK를 쓰도록 맞추세요."),
+            ["list.restartAdb"] = ("Restart adb Server", "adb 서버 다시 시작"),
+            ["list.restartingAdb"] = ("Restarting…", "다시 시작하는 중…"),
+
+            // adb 서버 다시 시작 확인
+            ["restart.confirmTitle"] = ("Restart adb Server", "adb 서버 다시 시작"),
+            ["restart.confirmBody"] = (
+                "The running adb server will be stopped and started again with the newest adb. Other tools using adb, such as Android Studio or Logcat, will briefly lose their connection. Paired devices usually reconnect automatically.",
+                "실행 중인 adb 서버를 종료하고 가장 최신 adb로 다시 시작합니다. Android Studio·Logcat 등 adb를 쓰는 다른 도구의 연결이 잠깐 끊깁니다. 페어링된 기기는 보통 자동으로 다시 연결됩니다."),
+            ["restart.confirmOk"] = ("Restart", "다시 시작"),
 
             // Pair 화면
             ["pair.title"] = ("Pair {0} over Wi-Fi", "Wi-Fi로 {0} 페어링"),
