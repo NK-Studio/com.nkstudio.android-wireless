@@ -169,7 +169,56 @@ namespace AndroidWireless
                 return Localization.Get("error.noAdb");
 
             var result = await AdbClient.RunAsync("start-server", token, 20000);
-            return result.Success ? null : Localization.Format("error.startServer", result.Output);
+            if (result.Success) return null;
+
+            // 종료 코드나 출력이 애매해도 서버가 실제로 떠 있으면 성공으로 본다.
+            try
+            {
+                await QueryAsync("host:version", token);
+                return null;
+            }
+            catch (SocketException)
+            {
+                return Localization.Format("error.startServer", result.Output);
+            }
+        }
+
+        /// <summary>
+        /// 실행 중인 adb 서버를 내리고 포트가 닫힐 때까지 기다린다. Windows에서는 실행 중인 adb.exe를
+        /// 덮어쓸 수 없으므로 platform-tools를 설치하기 전에 호출한다.
+        /// </summary>
+        public static async Task KillAsync(CancellationToken token, int waitMs = 5000)
+        {
+            try
+            {
+                await QueryAsync("host:kill", token);
+            }
+            catch (SocketException)
+            {
+                return; // 서버가 떠 있지 않음
+            }
+            catch (Exception e) when (e is IOException || e is AdbFailException)
+            {
+                // 서버가 응답 없이 연결을 끊으며 종료한 경우
+            }
+
+            var deadline = DateTime.UtcNow.AddMilliseconds(waitMs);
+            while (DateTime.UtcNow < deadline)
+            {
+                try
+                {
+                    await QueryAsync("host:version", token);
+                }
+                catch (SocketException)
+                {
+                    break; // 포트가 닫힘
+                }
+                catch (IOException) { }
+                await Task.Delay(200, token);
+            }
+
+            // 소켓이 닫힌 뒤에도 프로세스가 exe 파일을 잠깐 잡고 있을 수 있다.
+            await Task.Delay(500, token);
         }
 
         /// <summary>성공 시 연결 서비스 이름(guid)을 돌려준다.</summary>

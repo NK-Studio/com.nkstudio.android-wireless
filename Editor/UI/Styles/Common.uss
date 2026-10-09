@@ -667,6 +667,44 @@
     margin-top: 6px;
 }
 
+/* 설치 확인처럼 글이 여러 줄인 다이얼로그 */
+.aw-dialog--confirm {
+    width: 520px;
+    align-items: stretch;
+}
+
+.aw-dialog__title.unity-label {
+    font-size: 16px;
+    -unity-font-definition: url("../Fonts/AwSansKR-Bold.ttf");
+    -unity-font-style: normal;
+    white-space: normal;
+    margin-bottom: 14px;
+}
+
+.aw-dialog__text.unity-label {
+    white-space: normal;
+    margin-bottom: 10px;
+}
+
+.aw-dialog__path.unity-label {
+    white-space: normal;
+    font-size: 12px;
+    color: var(--aw-fg-muted);
+    padding: 8px 10px;
+    margin-bottom: 14px;
+    border-width: 1px;
+    border-radius: 6px;
+    border-color: var(--aw-dialog-border);
+}
+
+.aw-dialog__license.unity-label {
+    margin-bottom: 18px;
+}
+
+.aw-dialog__confirm.unity-button {
+    margin-left: 8px;
+}
+
 /* ---------- 결과 ---------- */
 .aw-result__center {
     flex-grow: 1;

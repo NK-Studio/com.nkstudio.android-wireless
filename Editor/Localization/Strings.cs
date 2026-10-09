@@ -46,8 +46,8 @@ namespace AndroidWireless
             ["list.empty.none"] = ("No devices found", "기기를 찾지 못했습니다"),
             ["list.empty.noneDesc"] = ("Turn on Wireless debugging on your device. It will show up here automatically.", "기기에서 무선 디버깅을 켜면 여기에 자동으로 나타납니다."),
             ["list.note.oldAdb"] = (
-                "Device name, API and ADB Wi-Fi version need Android SDK Platform-Tools 36 or newer.",
-                "기기 이름·API·ADB Wi-Fi 버전 표시는 Android SDK Platform-Tools 36 이상이 필요합니다."),
+                "Device name, API and ADB Wi-Fi version need Android SDK Platform-Tools 37 or newer.",
+                "기기 이름·API·ADB Wi-Fi 버전 표시는 Android SDK Platform-Tools 37 이상이 필요합니다."),
 
             // Pair 화면
             ["pair.title"] = ("Pair {0} over Wi-Fi", "Wi-Fi로 {0} 페어링"),
@@ -106,9 +106,16 @@ namespace AndroidWireless
             ["update.noSdkManager"] = ("sdkmanager wasn't found in Unity's Android SDK.", "Unity Android SDK에서 sdkmanager를 찾지 못했습니다."),
             ["update.confirmTitle"] = ("Install Android SDK Platform-Tools", "Android SDK Platform-Tools 설치"),
             ["update.confirmBody"] = (
-                "The latest Android SDK Platform-Tools will be downloaded with sdkmanager and installed into Unity's Android SDK:\n{0}\n\nBy installing, you agree to the Android SDK License Agreement:\nhttps://developer.android.com/studio/terms",
-                "sdkmanager로 최신 Android SDK Platform-Tools를 받아 Unity Android SDK에 설치합니다:\n{0}\n\n설치하면 Android SDK 라이선스 계약에 동의하게 됩니다:\nhttps://developer.android.com/studio/terms"),
+                "The latest Android SDK Platform-Tools will be downloaded with sdkmanager and installed into Unity's Android SDK:",
+                "sdkmanager로 최신 Android SDK Platform-Tools를 받아 Unity Android SDK에 설치합니다:"),
+            ["update.confirmNote"] = (
+                "The running adb server will be restarted. On Windows, administrator permission may be requested if this folder is read-only (e.g. under Program Files).",
+                "실행 중인 adb 서버는 다시 시작됩니다. Windows에서 이 폴더에 쓸 권한이 없으면(Program Files 등) 관리자 권한을 요청합니다."),
+            ["update.licenseNote"] = ("By installing, you agree to the {link}.", "설치하면 {link}에 동의하게 됩니다."),
+            ["update.licenseLink"] = ("Android SDK License Agreement", "Android SDK 라이선스 계약"),
             ["update.confirmOk"] = ("Agree and Install", "동의하고 설치"),
+            ["update.elevationDenied"] = ("Administrator permission was denied.", "관리자 권한 요청이 거부되었습니다."),
+            ["update.licenseNotAccepted"] = ("sdkmanager didn't accept the Android SDK license.", "sdkmanager가 Android SDK 라이선스 동의를 받지 못했습니다."),
 
             // 오류
             ["error.pairTimeout"] = ("Pairing timed out. Make sure the device is still in pairing mode.", "페어링 시간이 초과되었습니다. 기기가 아직 페어링 모드인지 확인하세요."),

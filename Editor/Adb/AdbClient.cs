@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEditor;
@@ -31,6 +32,7 @@ namespace AndroidWireless
     {
         public const string AdbPathPrefKey = "AndroidWireless.AdbPathOverride";
         private const int DefaultTimeoutMs = 15000;
+        private const int OutputDrainMs = 1000;
 
         public static string OverridePath
         {
@@ -110,8 +112,13 @@ namespace AndroidWireless
                     }
 
                     process.StandardInput.Close();
-                    var stdout = process.StandardOutput.ReadToEndAsync();
-                    var stderr = process.StandardError.ReadToEndAsync();
+                    var output = new StringBuilder();
+                    var stdoutClosed = new ManualResetEventSlim();
+                    var stderrClosed = new ManualResetEventSlim();
+                    process.OutputDataReceived += (_, e) => { if (e.Data == null) stdoutClosed.Set(); else lock (output) output.AppendLine(e.Data); };
+                    process.ErrorDataReceived += (_, e) => { if (e.Data == null) stderrClosed.Set(); else lock (output) output.AppendLine(e.Data); };
+                    process.BeginOutputReadLine();
+                    process.BeginErrorReadLine();
 
                     var deadline = DateTime.UtcNow.AddMilliseconds(timeoutMs);
                     while (!process.WaitForExit(100))
@@ -123,8 +130,14 @@ namespace AndroidWireless
                         }
                     }
 
-                    string output = (stdout.Result + stderr.Result).Trim();
-                    return new AdbResult(process.ExitCode, output);
+                    // start-server가 띄운 데몬이 파이프 핸들을 물려받으면(구버전 adb, 특히 Windows) EOF가 오지 않는다.
+                    // adb는 이미 종료했으므로 출력은 잠깐만 기다리고 받은 데까지만 쓴다.
+                    stdoutClosed.Wait(OutputDrainMs);
+                    stderrClosed.Wait(OutputDrainMs);
+
+                    string text;
+                    lock (output) text = output.ToString();
+                    return new AdbResult(process.ExitCode, text.Trim());
                 }
             }, token);
         }

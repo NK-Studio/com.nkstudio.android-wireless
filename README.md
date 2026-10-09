@@ -39,7 +39,7 @@ https://github.com/NK-Studio/com.nkstudio.android-wireless.git
 - Unity 6000.0+
 - **Android Build Support 모듈** (없으면 창에 사용할 수 없다는 안내만 표시됩니다)
 - Android 11 이상 기기, PC와 같은 Wi-Fi 네트워크
-- 기기 이름·API·ADB Wi-Fi 버전 표시는 Android SDK Platform-Tools 36 이상, ADB Wi-Fi 2.0은 37 이상
+- 기기 이름·API·ADB Wi-Fi 버전 표시는 Android SDK Platform-Tools 37 이상 (36.0.0은 `host:track-mdns-services`를 지원하지 않음)
 
 ## 동작 방식
 
@@ -53,6 +53,11 @@ Unity와 다른 도구(Android Studio 등)가 서로 adb 서버를 종료하고 
 
 - Unity의 `Preferences > External Tools > Kill external ADB instances`가 켜져 있으면, Unity가 자기 SDK가 아닌 adb 서버를 종료합니다. 다른 도구와 같이 쓴다면 이 옵션을 끄세요.
 - Unity SDK와 다른 도구의 Platform-Tools 버전이 다르면 서로 서버를 재시작시킵니다. 창의 업데이트 안내로 Unity SDK를 최신으로 올리거나, `Preferences > External Tools > Android SDK`를 같은 SDK로 맞추세요.
+
+## 문제 해결: Windows
+
+- **목록에 기기가 안 나올 때**: mDNS(UDP 5353) 수신을 Windows 방화벽이 막고 있을 수 있습니다. 처음 adb 서버가 뜰 때 나오는 방화벽 창에서 `adb.exe`를 허용하거나, `Windows 보안 > 방화벽 > 앱 허용`에서 사용하는 SDK의 `platform-tools\adb.exe`를 개인 네트워크에 허용하세요. Wi-Fi 네트워크 프로필이 "공용"이면 "개인"으로 바꾸세요.
+- **Platform-Tools 설치**: Unity가 `C:\Program Files`에 설치돼 있으면 SDK 폴더에 쓸 권한이 없어 관리자 권한(UAC) 확인 창이 나옵니다. 설치 전에 실행 중인 adb 서버를 종료하고(실행 중인 `adb.exe`는 덮어쓸 수 없음), 설치가 끝나면 자동으로 다시 띄웁니다.
 
 ## 서드파티
 

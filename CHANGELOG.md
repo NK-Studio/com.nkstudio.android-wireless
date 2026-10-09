@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.0.1] - 2026-10-09
+### Changed
+- Platform-Tools 설치 확인을 OS 대화상자 대신 창 안의 팝업으로 표시 (설치 위치·관리자 권한 안내, 라이선스 링크)
+
+### Fixed
+- Windows: Platform-Tools 설치
+  - 설치 전에 adb 서버를 내리고, 설치 중에는 다시 띄우지 않도록 수정 (실행 중인 `adb.exe`가 잠겨 교체에 실패하던 문제)
+  - Unity SDK 폴더에 쓸 수 없으면(Program Files) 관리자 권한(UAC)으로 sdkmanager를 실행
+  - 공백이 있는 경로의 `sdkmanager.bat`을 `cmd /s /c`로 감싸 실행
+  - 취소·시간 초과 시 sdkmanager의 자식 java 프로세스까지 종료
+  - Windows의 sdkmanager가 stdin의 "y" 응답을 읽지 않아 라이선스 미동의로 아무것도 설치하지 않던 문제: 동의 후 `licenses/android-sdk-license`에 동의 기록을 남긴 뒤 실행
+  - 실패 시 진행률 줄 대신 실제 오류 메시지를 표시
+- 기기 이름·API 표시 요구 버전 안내를 Platform-Tools 37 이상으로 정정 (36.0.0 서버는 `host:track-mdns-services` 미지원)
+- adb 서버 시작: 서버 데몬이 출력 파이프를 물고 있어도 멈추지 않도록 출력은 종료 후 최대 1초만 기다림. 종료 코드가 실패여도 서버가 떠 있으면 성공으로 처리
+
 ## [1.0.0] - 2026-10-09
 ### Changed
 - Android Studio의 "Pair devices over Wi-Fi"와 같은 흐름으로 창을 새로 구성 (View 단위 UXML)

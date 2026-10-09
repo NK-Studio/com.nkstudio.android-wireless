@@ -99,12 +99,9 @@ namespace AndroidWireless
 
             install.clicked += async () =>
             {
-                bool agreed = EditorUtility.DisplayDialog(
-                    Localization.Get("update.confirmTitle"),
-                    Localization.Format("update.confirmBody", AndroidSdk.SdkRoot),
-                    Localization.Get("update.confirmOk"),
-                    Localization.Get("common.cancel"));
-                if (!agreed) return;
+                if (installing) return;
+                bool agreed = await new InstallConfirmOverlay(context, AndroidSdk.SdkRoot).ShowAsync();
+                if (!agreed || banner.panel == null) return;
 
                 installing = true;
                 SetState(() => Localization.Get("update.installing"), true, false, false);
@@ -128,8 +125,17 @@ namespace AndroidWireless
         private static string LastLine(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) return "?";
-            var lines = text.Trim().Split('\n');
-            return lines[lines.Length - 1].Trim();
+            if (text.IndexOf("license is not accepted", StringComparison.OrdinalIgnoreCase) >= 0
+                || text.IndexOf("licenses or those of the packages they depend on were not accepted", StringComparison.OrdinalIgnoreCase) >= 0)
+                return Localization.Get("update.licenseNotAccepted");
+
+            // sdkmanager는 진행률을 "\r[====] 100% …"로 덮어쓰므로 진행률 줄을 건너뛰고 마지막 메시지를 쓴다.
+            var lines = text.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(l => l.Trim())
+                .Where(l => l.Length > 0)
+                .ToArray();
+            if (lines.Length == 0) return "?";
+            return lines.LastOrDefault(l => !l.StartsWith("[", StringComparison.Ordinal)) ?? lines[lines.Length - 1];
         }
 
         public override void OnShow()

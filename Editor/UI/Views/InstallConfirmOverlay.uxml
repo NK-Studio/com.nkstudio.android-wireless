@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:VisualElement name="dim" class="aw-overlay">
+        <ui:VisualElement name="dialog" class="aw-dialog aw-dialog--confirm">
+            <ui:Label text="@update.confirmTitle" class="aw-dialog__title" />
+            <ui:Label text="@update.confirmBody" class="aw-dialog__text" />
+            <ui:Label name="path" class="aw-dialog__path" />
+            <ui:Label text="@update.confirmNote" class="aw-dialog__text" />
+            <ui:Label name="license" class="aw-dialog__text aw-dialog__license" />
+            <ui:VisualElement class="aw-dialog__buttons">
+                <ui:Button name="cancel" text="@common.cancel" class="aw-btn aw-btn--secondary" />
+                <ui:Button name="confirm" text="@update.confirmOk" class="aw-btn aw-btn--primary aw-dialog__confirm" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

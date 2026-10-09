@@ -10,7 +10,7 @@ namespace AndroidWireless
 {
     /// <summary>
     /// adb 서버의 mDNS 서비스와 연결된 기기 목록을 스트림으로 구독해 기기 목록을 실시간으로 유지한다.
-    /// - `host:track-mdns-services`: 기기 이름·API·ADB Wi-Fi 버전까지 오는 protobuf 스트림 (platform-tools 36+)
+    /// - `host:track-mdns-services`: 기기 이름·API·ADB Wi-Fi 버전까지 오는 protobuf 스트림 (platform-tools 37+, 36.0.0은 미지원)
     /// - `host:mdns:services`: 구버전 서버용 텍스트 폴백 (2초 폴링, 이름·주소만)
     /// - `host:track-devices`: 이미 연결된 기기 표시용
     /// 모든 콜백은 에디터 메인 스레드(UnitySynchronizationContext)에서 실행된다.
@@ -285,6 +285,8 @@ namespace AndroidWireless
                 var now = DateTime.UtcNow;
                 if (unreachableSince == DateTime.MaxValue) unreachableSince = now;
                 if (now - unreachableSince < StartServerAfter) throw;
+                // platform-tools 설치 중에 서버를 띄우면 adb.exe가 잠겨(Windows) 설치가 실패한다.
+                if (AndroidSdk.IsInstallingPlatformTools) throw;
 
                 // 계속 없으면 한 번만 띄우고(두 루프가 공유) 다시 시도한다.
                 if (ensureServerTask == null || ensureServerTask.IsCompleted)
