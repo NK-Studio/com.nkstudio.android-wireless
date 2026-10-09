@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.2.0] - 2026-10-09
+## [1.0.0] - 2026-10-09
 ### Changed
 - Android Studio의 "Pair devices over Wi-Fi"와 같은 흐름으로 창을 새로 구성 (View 단위 UXML)
   - 시작하면 무선 디버깅이 켜진 기기를 실시간 목록으로 표시 (이름 · ADB Wi-Fi 버전 · IP:포트 · API)
@@ -16,6 +16,10 @@
 - 테마: Android Studio / Unity (다크·라이트는 에디터 스킨을 따름), 첫 실행 시 테마 선택 화면
 - 언어: 한국어 / English
 - 테마·언어는 창 오른쪽 위 ⋮ 메뉴와 Preferences > Android Wireless에서 변경 (사용자별 EditorPrefs 저장)
+- Platform-Tools 37 미만이면 설치 제안 배너 (Unity SDK의 sdkmanager로 설치, 라이선스 동의 확인)
+- Android Build Support 모듈이 없으면 사용할 수 없다는 안내 화면
+- IBM Plex Sans KR 폰트 (Bold는 사용 글자 서브셋 `AW Sans KR`)
+- protobuf 파싱 EditMode 테스트
 
 ### Removed
 - adb 경로 입력란, 직접 연결, 연결된 기기 섹션, 로그 (adb 경로 지정은 Preferences로 이동)
