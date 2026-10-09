@@ -3,16 +3,28 @@
   "displayName": "Android Wireless Pairing",
   "version": "1.0.0",
   "unity": "6000.0",
-  "description": "Android Studio-style wireless debugging pairing window for the Unity Editor. Lists Wi-Fi debuggable devices live, pairs via QR code or 6-digit code, and supports ADB Wi-Fi 2.0.",
+  "description": "Pair and connect Android 11+ devices for wireless debugging directly in the Unity Editor. Discover devices in real time, pair via QR code or a 6-digit code, and connect automatically. Includes ADB Wi-Fi version indicators, Android SDK Platform-Tools updates, Android Studio and Unity themes, and Korean and English support.",
+  "documentationUrl": "https://nk-studio.github.io/kr/Packages/com.nkstudio.android-wireless@1.0/manual/index.html",
+  "changelogUrl": "https://nk-studio.github.io/kr/Packages/com.nkstudio.android-wireless@1.0/changelog/CHANGELOG.html",
+  "licensesUrl": "https://nk-studio.github.io/kr/Packages/com.nkstudio.android-wireless@1.0/license/License.html",
+  "license": "MIT",
   "keywords": [
     "editor",
     "android",
     "adb",
     "wireless",
-    "debugging"
+    "debugging",
+    "wifi",
+    "pairing",
+    "qr-code"
   ],
   "author": {
-    "name": "NKStudio"
+    "name": "NKStudio",
+    "url": "https://github.com/NK-Studio"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NK-Studio/com.nkstudio.android-wireless.git"
   },
   "hideInEditor": false
 }
