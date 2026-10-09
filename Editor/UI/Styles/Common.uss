@@ -740,9 +740,9 @@
 
 /* Android Studio: 아이콘 + 굵은 이름. Unity 워드마크(높이 22px)와 무게를 맞춘다 */
 .aw-card__icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
+    width: 24px;
+    height: 24px;
+    margin-right: 6px;
     -unity-background-scale-mode: scale-to-fit;
 }
 
