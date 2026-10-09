@@ -1,0 +1,32 @@
+/* Android Studio — Dark. 색 토큰만 정의한다 — 레이아웃은 Styles/Common.uss */
+:root {
+    --aw-bg: #1E1F22;
+    --aw-fg: #DFE1E5;
+    --aw-fg-muted: #868A91;
+    --aw-divider: #393B40;
+    --aw-border: #4E5157;
+    --aw-field-bg: #1E1F22;
+    --aw-focus: #3574F0;
+    --aw-accent: #3574F0;
+    --aw-accent-hover: #366ACE;
+    --aw-accent-fg: #FFFFFF;
+    --aw-link: #548AF7;
+    --aw-row-hover: #2B2D30;
+    --aw-button-bg: #1E1F22;
+    --aw-button-border: #4E5157;
+    --aw-button-hover: #2B2D30;
+    --aw-button-pressed: #393B40;
+    --aw-tab-selected-bg: #2E436E;
+    --aw-tab-selected-border: #35538F;
+    --aw-tab-hover: #393B40;
+    --aw-box-bg: #1E1F22;
+    --aw-box-border: #393B40;
+    --aw-green: #5FB865;
+    --aw-success: #5FB865;
+    --aw-danger: #DB5C5C;
+    --aw-v1: #868A91;
+    --aw-v2: #5FB865;
+    --aw-dim: rgba(0, 0, 0, 0.6);
+    --aw-dialog-bg: #2B2D30;
+    --aw-dialog-border: #4E5157;
+}

@@ -1,0 +1,32 @@
+/* Android Studio — Light. 색 토큰만 정의한다 — 레이아웃은 Styles/Common.uss */
+:root {
+    --aw-bg: #F7F8FA;
+    --aw-fg: #000000;
+    --aw-fg-muted: #6C707E;
+    --aw-divider: #EBECF0;
+    --aw-border: #C9CCD6;
+    --aw-field-bg: #FFFFFF;
+    --aw-focus: #3574F0;
+    --aw-accent: #3574F0;
+    --aw-accent-hover: #3369D6;
+    --aw-accent-fg: #FFFFFF;
+    --aw-link: #2E55A3;
+    --aw-row-hover: #EDEEF1;
+    --aw-button-bg: #FFFFFF;
+    --aw-button-border: #C9CCD6;
+    --aw-button-hover: #F0F1F3;
+    --aw-button-pressed: #DFE1E5;
+    --aw-tab-selected-bg: #DFE9FD;
+    --aw-tab-selected-border: #A9C4F5;
+    --aw-tab-hover: #E4E5E8;
+    --aw-box-bg: #F7F8FA;
+    --aw-box-border: #EBECF0;
+    --aw-green: #208A3C;
+    --aw-success: #5FB865;
+    --aw-danger: #DB3B4B;
+    --aw-v1: #A8ADBD;
+    --aw-v2: #208A3C;
+    --aw-dim: rgba(0, 0, 0, 0.35);
+    --aw-dialog-bg: #FFFFFF;
+    --aw-dialog-border: #C9CCD6;
+}

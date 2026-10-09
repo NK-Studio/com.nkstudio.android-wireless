@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:VisualElement class="aw-page aw-missing">
+        <ui:VisualElement class="aw-missing__center">
+            <ui:Label text="@module.title" class="aw-missing__title" />
+            <ui:Label text="@module.desc" class="aw-missing__desc" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

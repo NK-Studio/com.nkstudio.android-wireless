@@ -3,9 +3,7 @@ guid: aad2a48b11011497e9ae63938f9d80a0
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - windowTemplate: {fileID: 9197481963319205126, guid: 7decb91e003ba491199c6035a8ff9059, type: 3}
-  - deviceRowTemplate: {fileID: 9197481963319205126, guid: d5320ac03f6ec4f4f99050645c85b343, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

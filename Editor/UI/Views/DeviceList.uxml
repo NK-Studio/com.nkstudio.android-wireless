@@ -1,0 +1,59 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:aw="AndroidWireless">
+    <ui:VisualElement class="aw-page aw-list">
+
+        <ui:VisualElement class="aw-steps">
+            <ui:VisualElement class="aw-step">
+                <aw:WifiIcon class="aw-step__icon" />
+                <ui:VisualElement class="aw-step__text">
+                    <ui:Label text="@list.step1.title" class="aw-step__title" />
+                    <ui:Label text="@list.step1.desc" class="aw-step__desc" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement class="aw-step">
+                <aw:BugIcon class="aw-step__icon aw-icon--green" />
+                <ui:VisualElement class="aw-step__text">
+                    <ui:Label text="@list.step2.title" class="aw-step__title" />
+                    <ui:Label name="step2-desc" class="aw-step__desc" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="update-banner" class="aw-banner">
+            <ui:Label name="update-text" class="aw-banner__text" />
+            <aw:Spinner name="update-spinner" class="aw-banner__spinner" />
+            <ui:Button name="update-later" text="@update.later" class="aw-btn aw-btn--secondary aw-banner__button" />
+            <ui:Button name="update-install" text="@update.install" class="aw-btn aw-btn--primary aw-banner__button" />
+            <ui:Button name="update-close" class="aw-banner__close">
+                <aw:CloseIcon class="aw-banner__close-icon" />
+            </ui:Button>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="search" class="aw-search">
+            <aw:SearchIcon class="aw-search__icon" />
+            <ui:TextField name="search-field" placeholder-text="@list.search" class="aw-search__field" />
+        </ui:VisualElement>
+
+        <ui:VisualElement class="aw-table">
+            <ui:VisualElement class="aw-table__header">
+                <ui:Label text="@list.col.name" class="aw-col aw-col--name" />
+                <ui:Label text="@list.col.version" class="aw-col aw-col--version" />
+                <ui:Label text="@list.col.address" class="aw-col aw-col--address" />
+                <ui:Label text="@list.col.api" class="aw-col aw-col--api" />
+                <ui:VisualElement class="aw-col aw-col--action" />
+            </ui:VisualElement>
+            <ui:ScrollView name="rows" class="aw-table__body" />
+            <ui:VisualElement name="empty" class="aw-empty">
+                <aw:Spinner name="empty-spinner" class="aw-empty__spinner" />
+                <ui:Label name="empty-title" class="aw-empty__title" />
+                <ui:Label name="empty-desc" class="aw-empty__desc" />
+                <ui:Button name="empty-adb" text="@list.openPreferences" class="aw-btn aw-btn--secondary aw-empty__button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement class="aw-footer">
+            <ui:Label name="footer-note" class="aw-footer__note" />
+            <ui:Button name="close" text="@common.close" class="aw-btn aw-btn--primary" />
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+</ui:UXML>

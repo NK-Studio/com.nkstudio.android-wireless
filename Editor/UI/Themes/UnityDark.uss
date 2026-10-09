@@ -1,0 +1,32 @@
+/* Unity — Dark (Unity 6 editor dark skin). 색 토큰만 정의한다 — 레이아웃은 Styles/Common.uss */
+:root {
+    --aw-bg: #383838;
+    --aw-fg: #D2D2D2;
+    --aw-fg-muted: #9A9A9A;
+    --aw-divider: #2A2A2A;
+    --aw-border: #212121;
+    --aw-field-bg: #2A2A2A;
+    --aw-focus: #3A79BB;
+    --aw-accent: #3A72B0;
+    --aw-accent-hover: #4682C4;
+    --aw-accent-fg: #FFFFFF;
+    --aw-link: #4C7EFF;
+    --aw-row-hover: #454545;
+    --aw-button-bg: #585858;
+    --aw-button-border: #303030;
+    --aw-button-hover: #676767;
+    --aw-button-pressed: #46607C;
+    --aw-tab-selected-bg: #46607C;
+    --aw-tab-selected-border: #3A79BB;
+    --aw-tab-hover: #454545;
+    --aw-box-bg: #323232;
+    --aw-box-border: #232323;
+    --aw-green: #7BC67E;
+    --aw-success: #5FB865;
+    --aw-danger: #E06C5F;
+    --aw-v1: #8C8C8C;
+    --aw-v2: #5FB865;
+    --aw-dim: rgba(0, 0, 0, 0.55);
+    --aw-dialog-bg: #3E3E3E;
+    --aw-dialog-border: #1E1E1E;
+}

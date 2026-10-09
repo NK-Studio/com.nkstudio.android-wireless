@@ -1,0 +1,22 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:aw="AndroidWireless">
+    <ui:VisualElement class="aw-tabpage aw-qr-tab">
+        <ui:Label name="caption" class="aw-tabpage__caption" />
+
+        <ui:VisualElement class="aw-qr">
+            <ui:Image name="qr-image" class="aw-qr__image" />
+            <ui:VisualElement name="qr-busy" class="aw-qr__busy">
+                <aw:Spinner class="aw-qr__spinner" />
+                <ui:Label name="qr-busy-text" class="aw-qr__busy-text" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="error" class="aw-inline-error">
+            <ui:Label name="error-text" class="aw-inline-error__text" />
+            <ui:Button name="retry" text="@common.tryAgain" class="aw-btn aw-btn--secondary" />
+        </ui:VisualElement>
+
+        <ui:VisualElement class="aw-tabpage__spacer" />
+        <ui:Label text="@qr.hintTitle" class="aw-tabpage__hint-title" />
+        <ui:Label text="@qr.hint" class="aw-tabpage__hint" />
+    </ui:VisualElement>
+</ui:UXML>

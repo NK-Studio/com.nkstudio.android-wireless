@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:VisualElement class="aw-page aw-setup">
+        <ui:Label text="@setup.title" class="aw-heading" />
+        <ui:Label text="@setup.desc" class="aw-subheading" />
+
+        <ui:ScrollView class="aw-setup__scroll">
+            <ui:VisualElement name="grid" class="aw-setup__grid" />
+        </ui:ScrollView>
+
+        <ui:VisualElement class="aw-footer">
+            <ui:Label class="aw-footer__note" />
+            <ui:Button name="continue" text="@setup.continue" class="aw-btn aw-btn--primary" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

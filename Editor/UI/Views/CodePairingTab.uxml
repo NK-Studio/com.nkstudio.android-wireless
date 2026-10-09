@@ -1,0 +1,20 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:aw="AndroidWireless">
+    <ui:VisualElement class="aw-tabpage aw-code-tab">
+
+        <ui:VisualElement name="waiting" class="aw-waiting">
+            <ui:Label name="waiting-text" class="aw-waiting__text" />
+            <aw:Spinner class="aw-waiting__spinner" />
+        </ui:VisualElement>
+
+        <ui:VisualElement name="available" class="aw-available">
+            <ui:VisualElement class="aw-available__header">
+                <ui:Label text="@code.available" class="aw-available__title" />
+                <aw:Spinner class="aw-available__spinner" />
+            </ui:VisualElement>
+            <ui:ScrollView name="available-list" class="aw-available__list" />
+        </ui:VisualElement>
+
+        <ui:Label name="hint-title" class="aw-tabpage__hint-title" />
+        <ui:Label text="@code.hint" class="aw-tabpage__hint" />
+    </ui:VisualElement>
+</ui:UXML>

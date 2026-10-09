@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:aw="AndroidWireless">
+    <ui:VisualElement name="dim" class="aw-overlay">
+        <ui:VisualElement name="dialog" class="aw-dialog">
+            <ui:Label name="message" class="aw-dialog__message" />
+            <aw:PairingCodeInput name="code" />
+            <ui:VisualElement class="aw-dialog__status">
+                <ui:VisualElement name="busy" class="aw-dialog__busy">
+                    <aw:Spinner class="aw-dialog__spinner" />
+                    <ui:Label name="busy-text" text="@overlay.pairing" class="aw-dialog__busy-text" />
+                </ui:VisualElement>
+                <ui:Label name="error" class="aw-dialog__error" />
+                <ui:Label name="hint" text="@overlay.tip" class="aw-dialog__hint" />
+            </ui:VisualElement>
+            <ui:VisualElement class="aw-dialog__buttons">
+                <ui:Button name="cancel" text="@common.cancel" class="aw-btn aw-btn--secondary" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

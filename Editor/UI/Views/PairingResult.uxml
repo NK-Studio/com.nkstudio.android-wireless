@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:aw="AndroidWireless">
+    <ui:VisualElement class="aw-page aw-result">
+        <ui:VisualElement class="aw-result__center">
+            <aw:CheckCircleIcon class="aw-result__check" />
+            <ui:Label name="title" class="aw-result__title" />
+            <ui:Label name="another" class="aw-result__link" />
+        </ui:VisualElement>
+        <ui:VisualElement class="aw-footer">
+            <ui:Label class="aw-footer__note" />
+            <ui:Button name="close" text="@common.close" class="aw-btn aw-btn--primary" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

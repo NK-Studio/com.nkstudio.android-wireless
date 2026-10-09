@@ -1,0 +1,20 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:aw="AndroidWireless">
+    <ui:VisualElement class="aw-table__row">
+        <ui:Label name="name" class="aw-col aw-col--name aw-cell" />
+        <ui:VisualElement class="aw-col aw-col--version aw-cell">
+            <ui:VisualElement name="version-dot" class="aw-version-dot" />
+            <ui:Label name="version" class="aw-version-label" />
+        </ui:VisualElement>
+        <ui:Label name="address" class="aw-col aw-col--address aw-cell" />
+        <ui:Label name="api" class="aw-col aw-col--api aw-cell" />
+        <ui:VisualElement class="aw-col aw-col--action">
+            <ui:Button name="pair" class="aw-btn aw-btn--secondary aw-pair-button">
+                <aw:PairIcon class="aw-pair-icon" />
+                <ui:Label text="@list.pair" picking-mode="Ignore" class="aw-btn__label" />
+            </ui:Button>
+            <ui:VisualElement name="connected" class="aw-connected">
+                <ui:Label text="@list.connected" class="aw-connected__label" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

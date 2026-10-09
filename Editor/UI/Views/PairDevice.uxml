@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:VisualElement class="aw-page aw-pair">
+        <ui:Label name="title" class="aw-heading" />
+        <ui:Label name="desc" class="aw-subheading" />
+
+        <ui:VisualElement class="aw-tabbox">
+            <ui:VisualElement class="aw-tabbar">
+                <ui:Button name="tab-qr" text="@pair.tab.qr" class="aw-tab" />
+                <ui:Button name="tab-code" text="@pair.tab.code" class="aw-tab" />
+            </ui:VisualElement>
+            <ui:VisualElement name="tab-content" class="aw-tabbox__content" />
+        </ui:VisualElement>
+
+        <ui:VisualElement class="aw-footer">
+            <ui:Label class="aw-footer__note" />
+            <ui:Button name="close" text="@common.close" class="aw-btn aw-btn--primary" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
